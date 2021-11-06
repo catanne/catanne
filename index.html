@@ -3,14 +3,55 @@
   <head>
     <title>Me</title>
     <style type="text/css">
-        body{background-color: #4a784d; color:white; font-size: 48px;  padding:0; margin:0;} 
+        body{background-color: #4a784d; color:white; font-size: 44px;  padding:0; margin:0;} 
         .centerDiv {top:50%;left: 50%;transform: translate3d(-50%,-50%, 0);position: absolute;}
+        .btn{padding:0 0.2em; display:inline;}
+        .btn:hover{font-weight:700;}
+        #ControlStrip{padding:0.5em; font-size:0.5em}
+
     </style>
   </head>
   <body>
-    <div class = "centerDiv">
-        <div>i am catherine</div>
-        <div>champion of lower case</div>
+    <div id="ControlStrip" >
+        <div class="btn" onclick="LoadNextSnippet()" style="cursor:pointer">more</div>
+        <div class="btn" onclick="UnloadLastSnippet()" style="cursor:pointer">less</div>
     </div>
+    <div id="AboutMe" class = "centerDiv">
+        <div>i am catherine</div>
+        <div>champion of lower case</div>      
+    </div>
+    
+    <script type="text/javascript">
+        const myData = [
+            "i am catherine", 
+            "champion of lower case", 
+            "logic lover",
+            "born to code ;-)",
+            "green is the new black",
+            "more tea please",
+            "fin"
+        ];
+        //var pos = 2;
+        function LoadNextSnippet(){
+            //if (pos < myData.length){
+                var select = document.getElementById("AboutMe")
+                if (select.childElementCount < myData.length){
+                    var newNode = document.createElement('div');
+                    newNode.innerHTML = myData[select.childElementCount];
+                    select.appendChild(newNode);
+                }
+                //pos ++;
+            //}           
+        }
+        function UnloadLastSnippet(){
+            //if (pos >= 0){
+                var select = document.getElementById("AboutMe")
+                if (select.childElementCount > 0){                  
+                    select.removeChild(select.lastChild);
+                }
+                //pos --;
+            //}           
+        }
+    </script>
   </body>
 </html>
